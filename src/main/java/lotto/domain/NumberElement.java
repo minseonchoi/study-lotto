@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.message.ErrorMessage;
+
 import java.util.Objects;
 
 public class NumberElement {
@@ -15,12 +17,16 @@ public class NumberElement {
 
     private void validateNumberRange(int number) {
         if (isNumberBetween(number)) {
-            throw new IllegalArgumentException("로또 번호는 1에서 45까지만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private boolean isNumberBetween(int number) {
         return number > LOTTO_MAX_NUMBER || number < LOTTO_MIN_NUMBER;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     @Override
@@ -33,5 +39,10 @@ public class NumberElement {
     @Override
     public int hashCode() {
         return Objects.hashCode(number);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 }

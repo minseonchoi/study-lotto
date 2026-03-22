@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.message.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -24,7 +26,7 @@ public class Lotto {
 
     private void validateSize(Set<NumberElement> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 번호를 6개 입력하세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
@@ -32,4 +34,8 @@ public class Lotto {
         return numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
